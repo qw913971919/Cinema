@@ -73,6 +73,7 @@ ul{
     flex-direction:column;
     margin-top:10px;
     position: absolute;
+    margin-bottom: 45px;
     li{
         width: 100%;
         display: flex;

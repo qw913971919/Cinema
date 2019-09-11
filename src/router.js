@@ -44,6 +44,11 @@ export default new Router({
         path:'comingsoon',
         name:'comingsoon',
         component:()=>import('@/components/ComingSoon/comingsoon.vue')
+      },
+      {
+        path:'search',
+        name:'search',
+        component:()=>import('@/components/Search/search.vue')
       }
     ]
     },

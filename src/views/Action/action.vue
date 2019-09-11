@@ -8,9 +8,9 @@
 					<router-link tag="div" class="hot_item" to="/action/nowplaying">正在热映</router-link>
 					<router-link tag="div" class="hot_item" to="/action/comingsoon">即将上映</router-link>
 				</div>
-				<div class="search_entry">
+				<router-link class="search_entry" tag="div" to="/action/search">
 					<i class="iconfont icon-sousuo"></i>
-				</div>
+				</router-link>
 		</div>
         <router-view></router-view>
   </div>

@@ -7,6 +7,9 @@ import store from './store'
 import '../public/css/iconfont/iconfont.css'
 import '../public/css/iconfont/iconfont.ttf'
 import '../public/css/iconfont/iconfont.woff'
+import '../public/icon/iconfont.css'
+import '../public/icon/iconfont.ttf'
+import '../public/icon/iconfont.woff2'
 import axios from 'axios'
 Vue.prototype.$axios=axios
 Vue.use(Mint)

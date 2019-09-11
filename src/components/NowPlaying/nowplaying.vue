@@ -41,7 +41,6 @@ export default {
 .content{
     width:100%;
     position: relative;
-    margin-bottom: 45px;
 }
 .test{
     display: flex;
@@ -74,6 +73,7 @@ ul{
     flex-direction:column;
     margin-top:10px;
     position: absolute;
+    margin-bottom: 45px;
     li{
         width: 100%;
         display: flex;
