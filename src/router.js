@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      redirect:'/action/city'
+      redirect:'/action/nowplaying'
     },
     {
       path:'/cinema',
@@ -28,29 +28,29 @@ export default new Router({
       path:'/action',
       name:'action',
       component:()=>import('./views/Action/action.vue'),
-      redirect:'/action/city',//路由重定向
+      redirect:'/action/nowplaying',//路由重定向
       linkActiveClass:'active',
       children:[{
-        path:'city',
-        name:'city',
-        component:()=>import('@/components/City/city.vue')
-      },
-      {
-        path:'nowplaying',
-        name:'nowplaying',
-        component:()=>import('@/components/NowPlaying/nowplaying.vue')
-      },
-      {
-        path:'comingsoon',
-        name:'comingsoon',
-        component:()=>import('@/components/ComingSoon/comingsoon.vue')
-      },
-      {
-        path:'search',
-        name:'search',
-        component:()=>import('@/components/Search/search.vue')
-      }
-    ]
+          path:'city',
+          name:'city',
+          component:()=>import('@/components/City/city.vue')
+        },
+        {
+          path:'nowplaying',
+          name:'nowplaying',
+          component:()=>import('@/components/NowPlaying/nowplaying.vue')
+        },
+        {
+          path:'comingsoon',
+          name:'comingsoon',
+          component:()=>import('@/components/ComingSoon/comingsoon.vue')
+        },
+        {
+          path:'search',
+          name:'search',
+          component:()=>import('@/components/Search/search.vue')
+        }
+      ]
     },
   ]
 })

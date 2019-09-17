@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-      <ul>
+      <loading v-if="flag" class="loading"/>
+      <ul v-else>
           <li v-for="item in nowplaylist" :key="item.id">
               <div class="imge"><img :src="item.img|setWH('128.180')"/></div>
               <div class="body">
@@ -23,7 +24,8 @@
 export default {
     data(){
         return {
-            nowplaylist:[]
+            nowplaylist:[],
+            flag:true
         }
     },
     mounted(){
@@ -31,6 +33,7 @@ export default {
             if(res.data.status===0){
                 this.nowplaylist=res.data.data.movieList
                 console.log(this.nowplaylist)
+                this.flag=false
             }
         })
     }
@@ -38,8 +41,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-25%)
+}
 .content{
     width:100%;
+    height: 100%;
     position: relative;
 }
 .test{

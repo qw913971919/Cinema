@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="main">
+    <div id="main" ref="main">
     <header id="header">
 			<h1>喵喵电影</h1>
 		</header>
@@ -42,7 +42,8 @@ export default {
 }
 }
 </script>
-<style lang="scss" >
+<style lang="scss">
+//样式因为没有加scoped导致出现冲突，下次一定要记住，提前加scoped
 *{ margin : 0; padding : 0;}
 ul,li{ list-style: none;}
 img{ display: block;}

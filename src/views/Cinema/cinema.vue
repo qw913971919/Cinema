@@ -15,7 +15,8 @@
           <i class="iconfont icon-lower-triangle"></i>
         </div>
       </div>
-      <ul>
+      <loading v-if="flag" class="loading"/>
+      <ul v-else>
         <li v-for="item in cinemaList" :key="item.id">
           <div>
             <span>{{item.nm}}</span>
@@ -37,10 +38,12 @@
 </template>
 
 <script>
+import scroll from 'better-scroll'//引入滑动模块
 export default {
     data(){
         return {
-            cinemaList:[]
+            cinemaList:[],
+            flag:true
         }
     },
     mounted(){
@@ -48,7 +51,9 @@ export default {
             var msg=res.data.msg;
             if(msg==='ok'){
                 this.cinemaList=res.data.data.cinemas
+                this.flag=false
             }
+
         })
     },
     filters:{
@@ -85,10 +90,16 @@ export default {
 </script>
 
 <style scoped>
-
+.loading{
+    position: relative;
+    top: 50%;
+}
+#content{
+  height: 100%;
+}
 #content .cinema_menu {
   width: 100%;
-  height: 45px;
+  height: 46px;
   border-bottom: 1px solid #e6e6e6;
   display: flex;
   justify-content: space-around;
@@ -98,6 +109,7 @@ export default {
 #content .cinema_body {
   flex: 1;
   overflow: auto;
+  height:100%;
 }
 .cinema_body ul {
   padding: 20px;

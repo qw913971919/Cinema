@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-      <ul>
+      <loading v-if="flag" class="loading"/>
+      <ul v-else>
           <li v-for="item in comingsoon" :key="item.id">
               <div class="imge"><img :src="item.img|setWH('128.180')"/></div>
               <div class="body">
@@ -23,13 +24,15 @@
 export default {
     data(){
         return {
-            comingsoon:[]
+            comingsoon:[],
+            flag:true,
         }
     },
     mounted(){
         this.$axios.get('/api/movieComingList?cityId=10').then(res=>{
            if(res.data.status===0){
                this.comingsoon=res.data.data.comingList
+               this.flag=false
            }
         })
     }
@@ -37,10 +40,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-25%)
+}
 .content{
-    width:100%;
+    height:100%;
     position: relative;
-    
+
 }
 .test{
     display: flex;

@@ -1,6 +1,6 @@
 <template>
   <div>
-      member
+      <loading></loading>
   </div>
 </template>
 
