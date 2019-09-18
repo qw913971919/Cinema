@@ -5,15 +5,14 @@
 					<div class="city_hot">
 						<h2>热门城市</h2>
 						<ul class="clearfix">
-							<li v-for="item in hotList" :key="item.id">{{item.nm}}</li>
-
+							<li v-for="item in hotList" :key="item.id" @click="handleToCity(item.nm,item.id)">{{item.nm}}</li>
 						</ul>
 					</div>
 					<div class="city_sort" ref="city_sort">
 						<div v-for="item in cityList" :key=item.index>
 							<h2>{{item.index}}</h2>
 							<ul>
-								<li v-for="city in item.list" :key="city.id">{{city.nm}}</li>
+								<li v-for="city in item.list" :key="city.id" @click="handleToCity(city.nm,city.id)">{{city.nm}}</li>
 							</ul>
 						</div>
 					</div>
@@ -37,17 +36,30 @@ export default {
 			}
 	},
 	mounted(){
-		this.$axios.get('/api/cityList').then(res=>{//因为设置了反向代理，这里忽略了请求头，成功获取到了数据
+		var cityList=window.localStorage.getItem('cityList');
+		var hotList=window.localStorage.getItem('hotList');
+		if(cityList&&hotList){
+			this.cityList=JSON.parse(cityList)
+			this.hotList=JSON.parse(hotList)
+		}else
+		{this.$axios.get('/api/cityList').then(res=>{//因为设置了反向代理，这里忽略了请求头，成功获取到了数据
 			if(res.data.status===0){
 				var cities=res.data.data.cities
 				//[{index:'B',list:[{nm:'北京',id:13},{nm:'北江',id:14}]}]
 				var a=this.formatCityList(cities)
 					this.cityList=a.cityList,
 					this.hotList=a.hotList
+					window.localStorage.setItem('cityList',JSON.stringify(this.cityList));
+					window.localStorage.setItem('hotList',JSON.stringify(this.hotList));
 				}
-		})
+		})}
 	},
 	methods:{
+		handleToCity(nm,id){
+			this.$store.commit('city/CITY_INFO',{nm,id})//远程调用store中city模块的函数,module中的名字city
+			this.$router.push('/action/nowplaying')
+
+		},
 		formatCityList(cities){
 			var cityList=[]////[{index:'B',list:[{nm:'北京',id:13},{nm:'北江',id:14}]}]
 			var hotList=[]///[{nm:北京,id:13,hot:1},{nm:上海,id:14,hot:1}]

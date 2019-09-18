@@ -2,7 +2,7 @@
   <div id="content" class="textbody">
       <div class="movie_menu">
 				<router-link class="city_name" tag="div" to="/action/city">
-					<span>大连</span><i class="iconfont icon-lower-triangle"></i>
+					<span>{{$store.state.city.nm}}</span><i class="iconfont icon-lower-triangle"></i>
 				</router-link>
 				<div class="hot_swtich">
 					<router-link tag="div" class="hot_item" to="/action/nowplaying">正在热映</router-link>
