@@ -15,7 +15,7 @@
           <i class="iconfont icon-lower-triangle"></i>
         </div>
       </div>
-      <loading v-if="flag" class="loading"/>
+      <loading v-if="flag" class="loading" />
       <ul v-else>
         <li v-for="item in cinemaList" :key="item.id">
           <div>
@@ -29,7 +29,12 @@
             <span>{{item.distance}}</span>
           </div>
           <div class="card">
-            <div v-for="(itemcard,key) in item.tag" :key="key" :class="key|classCard" v-if="itemcard===1">{{key|formatCard}}</div>
+            <div
+              v-for="(itemcard,key) in item.tag"
+              :key="key"
+              :class="key|classCard"
+              v-if="itemcard===1"
+            >{{key|formatCard}}</div>
           </div>
         </li>
       </ul>
@@ -38,63 +43,67 @@
 </template>
 
 <script>
-import scroll from 'better-scroll'//引入滑动模块
+import scroll from "better-scroll"; //引入滑动模块
 export default {
-    data(){
-        return {
-            cinemaList:[],
-            flag:true
+  data() {
+    return {
+      cinemaList: [],
+      flag: true
+    };
+  },
+  mounted() {
+    this.$axios
+      .get(
+        "/api/cinemaList?cityId=" +
+          JSON.parse(window.localStorage.getItem("id"))
+      )
+      .then(res => {
+        var msg = res.data.msg;
+        if (msg === "ok") {
+          this.cinemaList = res.data.data.cinemas;
+          this.flag = false;
         }
-    },
-    mounted(){
-        this.$axios.get('/api/cinemaList?cityId=10').then(res=>{
-            var msg=res.data.msg;
-            if(msg==='ok'){
-                this.cinemaList=res.data.data.cinemas
-                this.flag=false
-            }
-
-        })
-    },
-    filters:{
-        formatCard(key){
-            var card=[
-                {key:'allowRefund',value:'改签'},
-                {key:'endorse',value:'退票'},
-                {key:'sell',value:'折扣卡'},
-                {key:'snack',value:'小吃'}
-            ]
-            for(var i=0;i<card.length;i++){
-                if(card[i].key===key){
-                    return card[i].value
-                }
-            }
-            return '';
-        },
-        classCard(key){
-            var card=[
-                {key:'allowRefund',value:'bl'},
-                {key:'endorse',value:'bl'},
-                {key:'sell',value:'or'},
-                {key:'snack',value:'or'}
-            ]
-            for(var i=0;i<card.length;i++){
-                if(card[i].key===key){
-                    return card[i].value
-                }
-            }
-            return '';
+      });
+  },
+  filters: {
+    formatCard(key) {
+      var card = [
+        { key: "allowRefund", value: "改签" },
+        { key: "endorse", value: "退票" },
+        { key: "sell", value: "折扣卡" },
+        { key: "snack", value: "小吃" }
+      ];
+      for (var i = 0; i < card.length; i++) {
+        if (card[i].key === key) {
+          return card[i].value;
         }
+      }
+      return "";
+    },
+    classCard(key) {
+      var card = [
+        { key: "allowRefund", value: "bl" },
+        { key: "endorse", value: "bl" },
+        { key: "sell", value: "or" },
+        { key: "snack", value: "or" }
+      ];
+      for (var i = 0; i < card.length; i++) {
+        if (card[i].key === key) {
+          return card[i].value;
+        }
+      }
+      return "";
     }
+  }
 };
 </script>
 
 <style scoped>
-.loading{
-    position: relative;
-    top: 50%;
+.loading {
+  position: relative;
+  top: 50%;
 }
-#content{
+#content {
   height: 100%;
 }
 #content .cinema_menu {
@@ -109,7 +118,7 @@ export default {
 #content .cinema_body {
   flex: 1;
   overflow: auto;
-  height:100%;
+  height: 100%;
 }
 .cinema_body ul {
   padding: 20px;

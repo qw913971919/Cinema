@@ -13,10 +13,10 @@ export default new Vuex.Store({
   actions: {
 
   },
-  getters:{//返回变化数据，一旦外部需要数据返回，这里return一个值，外部调用获取这里的返回值
+  getters: {//返回变化数据，一旦外部需要数据返回，这里return一个值，外部调用获取这里的返回值
 
   },
-  modules:{//模块化写法
+  modules: {//模块化写法
     city//引入city模块，并挂载在实例上
   }
 })
