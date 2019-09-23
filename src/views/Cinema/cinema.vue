@@ -101,11 +101,12 @@ export default {
 <style scoped>
 .loading {
   position: relative;
-  top: 50%;
+  top:25%;
 }
 #content {
   height: 100%;
 }
+
 #content .cinema_menu {
   width: 100%;
   height: 46px;

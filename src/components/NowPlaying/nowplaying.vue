@@ -2,7 +2,7 @@
   <div class="content">
     <loading v-if="flag" class="loading" />
     <ul v-else>
-      <li v-for="item in nowplaylist" :key="item.id">
+      <router-link tag="li" v-for="item in nowplaylist" :key="item.id" :to="'/moviedetails/'+item.id">
         <div class="imge">
           <img :src="item.img|setWH('128.180')" />
         </div>
@@ -24,7 +24,7 @@
             <input type="button" value="购票" />
           </div>
         </div>
-      </li>
+      </router-link>
     </ul>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default {
 }
 .content {
   width: 100%;
-  height: 100%;
   position: relative;
 }
 .test {
@@ -95,7 +94,6 @@ ul {
   flex-direction: column;
   margin-top: 10px;
   position: absolute;
-  margin-bottom: 45px;
   li {
     width: 100%;
     display: flex;

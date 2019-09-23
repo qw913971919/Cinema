@@ -4,7 +4,7 @@
     <header id="header">
 			<h1>喵喵电影</h1>
 		</header>
-    <router-view></router-view>
+    <router-view class="router"></router-view>
     <div class="tabbar">
       <router-link to="/action" tag="div" class="box">
       <img src="../public/image/action.png">
@@ -43,6 +43,11 @@ export default {
 }
 </script>
 <style lang="scss">
+.router{
+
+  overflow: auto;
+  margin-bottom: 45px;
+}
 //样式因为没有加scoped导致出现冲突，下次一定要记住，提前加scoped
 *{ margin : 0; padding : 0;}
 ul,li{ list-style: none;}
@@ -53,7 +58,7 @@ html,body{ height:100%;}
   height: 100%
 }
 
-#main{ height: 100%; display: flex; flex-direction:column;margin-bottom: 45px;}
+#main{ height: 100%; display: flex; flex-direction:column;}
 
 #header{width:100%; height:50px; color: #fff; background: pink; border-bottom: 1px solid pink; position: relative;}
 #header h1{ font-size: 18px; text-align: center; line-height: 50px; font-weight: normal; }
@@ -62,7 +67,9 @@ html,body{ height:100%;}
   color:	#FF1493;
 }
 .tabbar{
-  position: fixed;
+  position: absolute;
+
+  z-index: 99;
   bottom: 0;
   left:0;
   display:flex;

@@ -1,5 +1,5 @@
 const state = {//数据
-    nm: JSON.parse(window.localStorage.getItem('nm')) || '北京',
+    nm: JSON.parse(window.localStorage.getItem('nm')) || '成都',
     id: JSON.parse(window.localStorage.getItem('id')) || 1,
 };
 

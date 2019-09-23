@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    <messagebox></messagebox>
     <loading v-if="flag" class="loading" />
     <ul v-else>
       <li v-for="item in comingsoon" :key="item.id">
@@ -24,12 +25,16 @@
 </template>
 
 <script>
+import messagebox from "@/components/JS/MessageBox/messagebox.vue"
 export default {
   data() {
     return {
       comingsoon: [],
       flag: true
     };
+  },
+  components:{
+    messagebox
   },
   mounted() {
     this.$axios
@@ -87,7 +92,6 @@ ul {
   flex-direction: column;
   margin-top: 10px;
   position: absolute;
-  margin-bottom: 45px;
   li {
     width: 100%;
     display: flex;

@@ -24,6 +24,7 @@ export default {};
 <style scoped>
 .textbody {
   height: 100%;
+  overflow: auto;
 }
 #content .movie_menu {
   width: 100%;

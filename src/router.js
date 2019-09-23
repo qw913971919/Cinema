@@ -15,6 +15,11 @@ export default new Router({
       redirect:'/action/nowplaying'
     },
     {
+      path:'/moviedetails/:id',
+      name:'moviedetails',
+      component:()=>import('@/components/MovieDetails/moviedetails.vue')
+    },
+    {
       path:'/cinema',
       name:'cinema',
       component:()=>import('./views/Cinema/cinema.vue')
@@ -30,7 +35,8 @@ export default new Router({
       component:()=>import('./views/Action/action.vue'),
       redirect:'/action/nowplaying',//路由重定向
       linkActiveClass:'active',
-      children:[{
+      children:[
+        {
           path:'city',
           name:'city',
           component:()=>import('@/components/City/city.vue')
